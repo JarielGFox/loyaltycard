@@ -38,11 +38,20 @@
                                     </a>
                                     <ul class="dropdown-menu bg-dark bg-gradient">
                                     <li><a class="dropdown-item bg-dark text-warning" href="/card">Loyalty Card</a></li>
-                                    <li><a class="dropdown-item bg-dark text-warning" href="#">Smare</a></li>
+                                    <li><a class="dropdown-item bg-dark text-warning" href="{{route('catalogue.index')}}">Catalog</a></li>
                                     <li><a class="dropdown-item bg-dark text-warning" href="#">Something else here</a></li>
                                     </ul>
                                 </div>
                             </li>
+                            <form id="card-manager" action="{{ route('points-manager') }}" method="GET">
+                                @csrf
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning" href="{{ route('points-manager') }}"
+                                        onclick="event.preventDefault(); document.getElementById('card-manager').submit();">
+                                        Card Manager
+                                    </a>
+                                </li>
+                            </form>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <li class="nav-item">
