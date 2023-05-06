@@ -26,6 +26,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'required',
             'points' => 'required|integer',
             'quantity' => 'required|integer',
+            'product_code' => 'required|integer'
         ];
     }
 }

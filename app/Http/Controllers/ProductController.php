@@ -44,7 +44,7 @@ class ProductController extends Controller
             $product->save();
         }
 
-        return redirect()->route('catalogue.create')->with(['success' => 'The product has been successfully uploaded!']);
+        return redirect()->route('catalogue.create')->with(['success' => 'The item has been successfully uploaded!']);
     }
 
     /**
@@ -66,9 +66,11 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
         $product->fill($request->all())->save();
+
+        return redirect()->route('catalogue.index')->with(['success' => 'The item has been successfully edited!']);
     }
 
     /**
@@ -76,6 +78,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('catalogue.index')->with(['success' => 'The item has been successfully deleted!']);
     }
 }

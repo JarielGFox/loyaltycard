@@ -37,6 +37,11 @@
                         <td class="text-success fw-bold">{{$product->points}}</td>
                         <td class="text-end">
                             <a href="{{route('catalogue.edit', $product->id)}}" class="btn btn-sm btn-success">edit</a>
+                            <form class="d-inline" action="{{route('catalogue.destroy', $product->id)}}" onsubmit="return confirm('Are you sure?')"
+                                method="POST">
+                            @csrf 
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">delete</button></form>
                         </td>
                     </tr>
                 @endforeach
