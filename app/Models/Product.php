@@ -17,4 +17,9 @@ class Product extends Model
         'quantity',
         'product_code',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

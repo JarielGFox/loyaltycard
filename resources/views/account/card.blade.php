@@ -28,6 +28,8 @@
       <div class="my-3">
             <h4>Prize Catalog</h4>
 
+            <x-success />
+
             @foreach ($products as $product)
                 <div class="card mb-2">
                     <div class="card-body">
@@ -53,7 +55,18 @@
 
                                         @if(auth()->user()->cards->first() && $product->points < auth()->user()->cards->first()->points)
                                         <div class="mt-2">
-                                            <a href="" class="btn btn-sm btn-primary">Collect Item</a>
+                                            @if(auth()->user()->products->contains($product->id))
+                                            <span class="text-success">Premio richiesto il xxx</span>
+                                            <form action="{{route('card.reward.undo', $product)}}" method="POST" class="mt-2">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger">Cancel Order</button>
+                                            </form>    
+                                            @else
+                                            <form action="{{route('card.reward', $product)}}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-primary">Collect Item</button>
+                                            </form>
+                                            @endif
                                         </div>
                                         @endif
                                     </div>

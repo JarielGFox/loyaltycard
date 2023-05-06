@@ -22,6 +22,8 @@ Route::get('/', [PageController::class, 'homePage'])->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/card', [AccountController::class, 'card'])->name('card-manager');
+    Route::post('/card/reward{product}', [AccountController::class, 'reward'])->name('card.reward');
+    Route::post('/card/reward{product}/destroy', [AccountController::class, 'rewardUndo'])->name('card.reward.undo');
 
     // Points manager page
     Route::get('/admin/card/points/', [AdminController::class, 'pointsManager'])->name('points-manager');
