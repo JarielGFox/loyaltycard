@@ -11,22 +11,23 @@
     <div class="container my-3">
         <div class="row">
             <div class="col-6 mx-auto">
-                <form action="{{route('catalogue.update')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('catalogue.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="row g-3">
                         <div class="col-12">
                             <label for="name">Product name:</label>
-                            <input type="text" name="name" id="name" class="form-control" value="{{old('name')}}">
+                            <input type="text" name="name" id="name" class="form-control" value="{{old('name', $product->name)}}">
                             @error('name') <span class="text-danger sm">{{$message}}</span>  @enderror
                         </div>
                         <div class="col-12">
                             <label for="points">Product points:</label>
-                            <input type="number" name="points" id="points" class="form-control" value="{{old('points')}}">
+                            <input type="number" name="points" id="points" class="form-control" value="{{old('points', $product->points)}}">
                             @error('points') <span class="text-danger sm">{{$message}}</span> @enderror
                         </div>
                         <div class="col-12">
                             <label for="quantity">Product stock quantity:</label>
-                            <input type="number" name="quantity" id="quantity" class="form-control" value="{{old('quantity')}}">
+                            <input type="number" name="quantity" id="quantity" class="form-control" value="{{old('quantity', $product->quantity)}}">
                             @error('quantity') <span class="text-danger sm">{{$message}}</span> @enderror
                         </div>
                         <div class="col-12">
@@ -35,15 +36,15 @@
                         </div>
                         <div class="col-12">
                             <label for="description">Product description:</label>
-                            <textarea type="text" name="description" id="description" class="form-control" rows="8" cols="150">{{old('description')}}</textarea>
+                            <textarea type="text" name="description" id="description" class="form-control" rows="8" cols="150">{{old('description', $product->description)}}</textarea>
                             @error('description') <span class="text-danger sm">{{$message}}</span> @enderror
                         </div>
                         <div class="col-12">
                             <label for="product_code">Product code:</label>
-                            <input type="number" name="product_code" id="product_code" class="form-control">
+                            <input type="number" name="product_code" id="product_code" class="form-control" value="{{old('product_code', $product->product_code)}}">
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-secondary">Upload</button>
+                            <button type="submit" class="btn btn-secondary">Edit</button>
                         </div>
                     </div>
                 </form>

@@ -33,5 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/card/points/check', [AdminController::class, 'checkPoints'])->name('cards.points.check');
 
 
-    Route::resource('catalogue', ProductController::class);
+    Route::resource('catalogue', ProductController::class)->parameters([
+        'catalogue' => 'product' // tocca far così perchè la tabella nel DB si chiama products
+    ]);;
 });

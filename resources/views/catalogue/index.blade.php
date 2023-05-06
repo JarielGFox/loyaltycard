@@ -36,7 +36,7 @@
                         </td>
                         <td class="text-success fw-bold">{{$product->points}}</td>
                         <td class="text-end">
-                            <a href="{{route('catalogue.edit', $product)}}" class="btn btn-sm btn-success">edit</a>
+                            <a href="{{route('catalogue.edit', $product->id)}}" class="btn btn-sm btn-success">edit</a>
                         </td>
                     </tr>
                 @endforeach
