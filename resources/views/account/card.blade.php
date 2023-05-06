@@ -20,11 +20,52 @@
             <div class="my-3">
                 <h4>Your reward points:</h4>
                 <div class="text-end">
-                    {{$card->points}}
+                    <span class="text-bg-dark text-warning fw-bold">{{$card->points}}</span>
                 </div>
             </div>
       @endforeach
 
-      {{-- INSERISCI ACCOUNT POINTS --}}
+      <div class="my-3">
+            <h4>Prize Catalog</h4>
+
+            @foreach ($products as $product)
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-2">
+                                @if($product->image)
+                                <img src="{{Storage::url($product->image)}}" alt="{{$product->name}}" class="img-fluid border border-1 border-dark">
+                                @else
+                                <img src="https://picsum.photos/200/200" alt="{{$product->name}}" class="img-fluid border border-1 border-dark">
+                                @endif
+                            </div>
+                            <div class="col-10">
+                                <div>
+                                    {{$product->name}}
+                                </div>
+                                
+                                <div>
+                                    Points: {{$product->points}}
+                                    <div class="mt-2">
+                                        @if(auth()->user()->cards->first() && $product->points > auth()->user()->cards->first()->points)
+                                        <span class="text-secondary"> You miss only <span class="text-danger"> {{$product->points - auth()->user()->cards->first()->points}}</span> points to collect the prize!</span>
+                                        @endif
+
+                                        @if(auth()->user()->cards->first() && $product->points < auth()->user()->cards->first()->points)
+                                        <div class="mt-2">
+                                            <a href="" class="btn btn-sm btn-primary">Collect Item</a>
+                                        </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+
+      {{-- INSERISCI TOTALE PUNTI DELLE CARTE --}}
     </div>
 </x-main>
