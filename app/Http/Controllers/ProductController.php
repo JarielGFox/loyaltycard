@@ -13,9 +13,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::All();
+        $products = Product::All(); // metodo All() prende il contenuto della tabella "products"
 
         return view('catalogue.index', compact('products'));
+
+        // VAI AD UN'ORA E TRENTATRE E RIPRENDI DA LI'!!!
     }
 
     /**
@@ -33,7 +35,7 @@ class ProductController extends Controller
     {
         $product = Product::create($request->all());
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) { // verifichiamo se l'immagine sia valida
+        if ($request->hasFile('image') && $request->file('image')->isValid()) { // verifichiamo che e se l'immagine c'è e sia valida
 
             $picName = $request->file('image')->getClientOriginalName(); // convertiamo nome immagine con quello del titolo
             $picFormat = $request->file('image')->extension(); // ci assicuriamo che l'immagine mantenga la sua estensione
@@ -58,7 +60,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('catalogue.edit', compact('product'));
     }
 
     /**

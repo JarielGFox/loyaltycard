@@ -3,7 +3,7 @@
     <div class="container-md g-3">
         <div class="col-12">
             <div class="my-3 text-bg-dark text-warning mx-auto">
-                <h3>Upload an item in the catalog</h3>
+                <h3>Edit the selected item in the catalog</h3>
             </div>
         </div>
     </div>
@@ -11,7 +11,7 @@
     <div class="container my-3">
         <div class="row">
             <div class="col-6 mx-auto">
-                <form action="{{route('catalogue.store')}}" method="POST" enctype="multipart/form-data">
+                <form action="{{route('catalogue.update')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row g-3">
                         <div class="col-12">
